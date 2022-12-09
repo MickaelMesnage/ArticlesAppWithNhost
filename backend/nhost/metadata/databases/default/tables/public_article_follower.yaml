@@ -1,0 +1,26 @@
+table:
+  name: article_follower
+  schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        userId: x-hasura-User-Id
+      columns:
+        - articleId
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - articleId
+        - id
+        - userId
+      filter: {}
+delete_permissions:
+  - role: user
+    permission:
+      backend_only: false
+      filter:
+        userId:
+          _eq: X-Hasura-User-Id

@@ -2,4 +2,13 @@ fragment ArticleItem on article {
 	id
 	title
 	description
+	article_followers {
+		id
+	}
+}
+
+mutation FollowArticle($article_follower: article_follower_insert_input!) {
+	insert_article_follower_one(object: $article_follower) {
+		id
+	}
 }

@@ -6,6 +6,18 @@ configuration:
   custom_column_names: {}
   custom_root_fields:
     select: articles
+object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: userId
+array_relationships:
+  - name: article_followers
+    using:
+      foreign_key_constraint_on:
+        column: articleId
+        table:
+          name: article_follower
+          schema: public
 insert_permissions:
   - role: user
     permission:

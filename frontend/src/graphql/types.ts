@@ -80,11 +80,37 @@ export type String_Comparison_Exp = {
 /** columns and relationships of "article" */
 export type Article = {
   __typename?: 'article';
+  /** An array relationship */
+  article_followers: Array<Article_Follower>;
+  /** An aggregate relationship */
+  article_followers_aggregate: Article_Follower_Aggregate;
   created_at: Scalars['timestamptz'];
   description: Scalars['String'];
   id: Scalars['uuid'];
   title: Scalars['String'];
+  /** An object relationship */
+  user: Users;
   userId: Scalars['uuid'];
+};
+
+
+/** columns and relationships of "article" */
+export type ArticleArticle_FollowersArgs = {
+  distinct_on?: InputMaybe<Array<Article_Follower_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Article_Follower_Order_By>>;
+  where?: InputMaybe<Article_Follower_Bool_Exp>;
+};
+
+
+/** columns and relationships of "article" */
+export type ArticleArticle_Followers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Article_Follower_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Article_Follower_Order_By>>;
+  where?: InputMaybe<Article_Follower_Bool_Exp>;
 };
 
 /** aggregated selection of "article" */
@@ -114,10 +140,12 @@ export type Article_Bool_Exp = {
   _and?: InputMaybe<Array<Article_Bool_Exp>>;
   _not?: InputMaybe<Article_Bool_Exp>;
   _or?: InputMaybe<Array<Article_Bool_Exp>>;
+  article_followers?: InputMaybe<Article_Follower_Bool_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
   userId?: InputMaybe<Uuid_Comparison_Exp>;
 };
 
@@ -127,12 +155,187 @@ export enum Article_Constraint {
   ArticlePkey = 'article_pkey'
 }
 
+/** columns and relationships of "article_follower" */
+export type Article_Follower = {
+  __typename?: 'article_follower';
+  articleId: Scalars['uuid'];
+  id: Scalars['uuid'];
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "article_follower" */
+export type Article_Follower_Aggregate = {
+  __typename?: 'article_follower_aggregate';
+  aggregate?: Maybe<Article_Follower_Aggregate_Fields>;
+  nodes: Array<Article_Follower>;
+};
+
+/** aggregate fields of "article_follower" */
+export type Article_Follower_Aggregate_Fields = {
+  __typename?: 'article_follower_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Article_Follower_Max_Fields>;
+  min?: Maybe<Article_Follower_Min_Fields>;
+};
+
+
+/** aggregate fields of "article_follower" */
+export type Article_Follower_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Article_Follower_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "article_follower" */
+export type Article_Follower_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Article_Follower_Max_Order_By>;
+  min?: InputMaybe<Article_Follower_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "article_follower" */
+export type Article_Follower_Arr_Rel_Insert_Input = {
+  data: Array<Article_Follower_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Article_Follower_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "article_follower". All fields are combined with a logical 'AND'. */
+export type Article_Follower_Bool_Exp = {
+  _and?: InputMaybe<Array<Article_Follower_Bool_Exp>>;
+  _not?: InputMaybe<Article_Follower_Bool_Exp>;
+  _or?: InputMaybe<Array<Article_Follower_Bool_Exp>>;
+  articleId?: InputMaybe<Uuid_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "article_follower" */
+export enum Article_Follower_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  ArticleFollowerPkey = 'article_follower_pkey'
+}
+
+/** input type for inserting data into table "article_follower" */
+export type Article_Follower_Insert_Input = {
+  articleId?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Article_Follower_Max_Fields = {
+  __typename?: 'article_follower_max_fields';
+  articleId?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "article_follower" */
+export type Article_Follower_Max_Order_By = {
+  articleId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Article_Follower_Min_Fields = {
+  __typename?: 'article_follower_min_fields';
+  articleId?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "article_follower" */
+export type Article_Follower_Min_Order_By = {
+  articleId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "article_follower" */
+export type Article_Follower_Mutation_Response = {
+  __typename?: 'article_follower_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Article_Follower>;
+};
+
+/** on_conflict condition type for table "article_follower" */
+export type Article_Follower_On_Conflict = {
+  constraint: Article_Follower_Constraint;
+  update_columns?: Array<Article_Follower_Update_Column>;
+  where?: InputMaybe<Article_Follower_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "article_follower". */
+export type Article_Follower_Order_By = {
+  articleId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: article_follower */
+export type Article_Follower_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "article_follower" */
+export enum Article_Follower_Select_Column {
+  /** column name */
+  ArticleId = 'articleId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "article_follower" */
+export type Article_Follower_Set_Input = {
+  articleId?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "article_follower" */
+export type Article_Follower_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Article_Follower_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Article_Follower_Stream_Cursor_Value_Input = {
+  articleId?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "article_follower" */
+export enum Article_Follower_Update_Column {
+  /** column name */
+  ArticleId = 'articleId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type Article_Follower_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Article_Follower_Set_Input>;
+  where: Article_Follower_Bool_Exp;
+};
+
 /** input type for inserting data into table "article" */
 export type Article_Insert_Input = {
+  article_followers?: InputMaybe<Article_Follower_Arr_Rel_Insert_Input>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['uuid']>;
   title?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -174,10 +377,12 @@ export type Article_On_Conflict = {
 
 /** Ordering options when selecting data from "article". */
 export type Article_Order_By = {
+  article_followers_aggregate?: InputMaybe<Article_Follower_Aggregate_Order_By>;
   created_at?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
   userId?: InputMaybe<Order_By>;
 };
 
@@ -2589,6 +2794,10 @@ export type Mutation_Root = {
   delete_article?: Maybe<Article_Mutation_Response>;
   /** delete single row from the table: "article" */
   delete_article_by_pk?: Maybe<Article>;
+  /** delete data from the table: "article_follower" */
+  delete_article_follower?: Maybe<Article_Follower_Mutation_Response>;
+  /** delete single row from the table: "article_follower" */
+  delete_article_follower_by_pk?: Maybe<Article_Follower>;
   /** insert a single row into the table: "auth.providers" */
   insertAuthProvider?: Maybe<AuthProviders>;
   /** insert a single row into the table: "auth.provider_requests" */
@@ -2631,6 +2840,10 @@ export type Mutation_Root = {
   insertUsers?: Maybe<Users_Mutation_Response>;
   /** insert data into the table: "article" */
   insert_article?: Maybe<Article_Mutation_Response>;
+  /** insert data into the table: "article_follower" */
+  insert_article_follower?: Maybe<Article_Follower_Mutation_Response>;
+  /** insert a single row into the table: "article_follower" */
+  insert_article_follower_one?: Maybe<Article_Follower>;
   /** insert a single row into the table: "article" */
   insert_article_one?: Maybe<Article>;
   /** update single row of the table: "auth.providers" */
@@ -2677,6 +2890,12 @@ export type Mutation_Root = {
   update_article?: Maybe<Article_Mutation_Response>;
   /** update single row of the table: "article" */
   update_article_by_pk?: Maybe<Article>;
+  /** update data of the table: "article_follower" */
+  update_article_follower?: Maybe<Article_Follower_Mutation_Response>;
+  /** update single row of the table: "article_follower" */
+  update_article_follower_by_pk?: Maybe<Article_Follower>;
+  /** update multiples rows of table: "article_follower" */
+  update_article_follower_many?: Maybe<Array<Maybe<Article_Follower_Mutation_Response>>>;
   /** update multiples rows of table: "article" */
   update_article_many?: Maybe<Array<Maybe<Article_Mutation_Response>>>;
   /** update multiples rows of table: "auth.provider_requests" */
@@ -2835,6 +3054,18 @@ export type Mutation_RootDelete_Article_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Article_FollowerArgs = {
+  where: Article_Follower_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Article_Follower_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type Mutation_RootInsertAuthProviderArgs = {
   object: AuthProviders_Insert_Input;
   on_conflict?: InputMaybe<AuthProviders_On_Conflict>;
@@ -2978,6 +3209,20 @@ export type Mutation_RootInsertUsersArgs = {
 export type Mutation_RootInsert_ArticleArgs = {
   objects: Array<Article_Insert_Input>;
   on_conflict?: InputMaybe<Article_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Article_FollowerArgs = {
+  objects: Array<Article_Follower_Insert_Input>;
+  on_conflict?: InputMaybe<Article_Follower_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Article_Follower_OneArgs = {
+  object: Article_Follower_Insert_Input;
+  on_conflict?: InputMaybe<Article_Follower_On_Conflict>;
 };
 
 
@@ -3169,6 +3414,26 @@ export type Mutation_RootUpdate_Article_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Article_FollowerArgs = {
+  _set?: InputMaybe<Article_Follower_Set_Input>;
+  where: Article_Follower_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Article_Follower_By_PkArgs = {
+  _set?: InputMaybe<Article_Follower_Set_Input>;
+  pk_columns: Article_Follower_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Article_Follower_ManyArgs = {
+  updates: Array<Article_Follower_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Article_ManyArgs = {
   updates: Array<Article_Updates>;
 };
@@ -3255,6 +3520,12 @@ export type Query_Root = {
   article_aggregate: Article_Aggregate;
   /** fetch data from the table: "article" using primary key columns */
   article_by_pk?: Maybe<Article>;
+  /** fetch data from the table: "article_follower" */
+  article_follower: Array<Article_Follower>;
+  /** fetch aggregated fields from the table: "article_follower" */
+  article_follower_aggregate: Article_Follower_Aggregate;
+  /** fetch data from the table: "article_follower" using primary key columns */
+  article_follower_by_pk?: Maybe<Article_Follower>;
   /** fetch data from the table: "article" */
   articles: Array<Article>;
   /** fetch data from the table: "auth.providers" using primary key columns */
@@ -3330,6 +3601,29 @@ export type Query_RootArticle_AggregateArgs = {
 
 
 export type Query_RootArticle_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootArticle_FollowerArgs = {
+  distinct_on?: InputMaybe<Array<Article_Follower_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Article_Follower_Order_By>>;
+  where?: InputMaybe<Article_Follower_Bool_Exp>;
+};
+
+
+export type Query_RootArticle_Follower_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Article_Follower_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Article_Follower_Order_By>>;
+  where?: InputMaybe<Article_Follower_Bool_Exp>;
+};
+
+
+export type Query_RootArticle_Follower_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
@@ -3578,6 +3872,14 @@ export type Subscription_Root = {
   article_aggregate: Article_Aggregate;
   /** fetch data from the table: "article" using primary key columns */
   article_by_pk?: Maybe<Article>;
+  /** fetch data from the table: "article_follower" */
+  article_follower: Array<Article_Follower>;
+  /** fetch aggregated fields from the table: "article_follower" */
+  article_follower_aggregate: Article_Follower_Aggregate;
+  /** fetch data from the table: "article_follower" using primary key columns */
+  article_follower_by_pk?: Maybe<Article_Follower>;
+  /** fetch data from the table in a streaming manner : "article_follower" */
+  article_follower_stream: Array<Article_Follower>;
   /** fetch data from the table in a streaming manner : "article" */
   article_stream: Array<Article>;
   /** fetch data from the table: "article" */
@@ -3676,6 +3978,36 @@ export type Subscription_RootArticle_AggregateArgs = {
 
 export type Subscription_RootArticle_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootArticle_FollowerArgs = {
+  distinct_on?: InputMaybe<Array<Article_Follower_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Article_Follower_Order_By>>;
+  where?: InputMaybe<Article_Follower_Bool_Exp>;
+};
+
+
+export type Subscription_RootArticle_Follower_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Article_Follower_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Article_Follower_Order_By>>;
+  where?: InputMaybe<Article_Follower_Bool_Exp>;
+};
+
+
+export type Subscription_RootArticle_Follower_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootArticle_Follower_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Article_Follower_Stream_Cursor_Input>>;
+  where?: InputMaybe<Article_Follower_Bool_Exp>;
 };
 
 
