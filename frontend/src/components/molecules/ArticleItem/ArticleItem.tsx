@@ -4,6 +4,7 @@ import {
 	CardBody,
 	CardFooter,
 	CardHeader,
+	HStack,
 	IconButton,
 	Text,
 } from '@chakra-ui/react';
@@ -25,9 +26,12 @@ const ArticleItem = ({ fragment }: ArticleItemProps) => {
 				<Text>{fragment.description}</Text>
 			</CardBody>
 			<CardFooter display="flex" justify="end">
-				<IconButton aria-label="sonnette" onClick={onClick}>
-					<BellIcon />
-				</IconButton>
+				<HStack>
+					<IconButton aria-label="sonnette" onClick={onClick}>
+						<BellIcon />
+					</IconButton>
+					<Text>0</Text>
+				</HStack>
 			</CardFooter>
 		</Card>
 	);
