@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import HomePage from '../components/pages/HomePage';
+import ArticleListPage from '../components/pages/ArticleListPage/ArticleListPage';
 import SignInPage from '../components/pages/SignInPage';
 import SignUpPage from '../components/pages/SignUpPage';
 import ConnectedLayout from './ConnectedLayout';
@@ -12,8 +12,7 @@ const Router = () => (
 		<Route path={Path.SignUp} element={<SignUpPage />} />
 		<Route path={Path.ArticleList} element={<ProtectedRoute />}>
 			<Route path="*" element={<ConnectedLayout />}>
-				{/* <Route path="*" element={<HomePage />} /> */}
-				<Route path="*" element={<div>ok</div>} />
+				<Route path="*" element={<ArticleListPage />} />
 			</Route>
 		</Route>
 		<Route path="/" element={<Navigate to={Path.ArticleList} />} />

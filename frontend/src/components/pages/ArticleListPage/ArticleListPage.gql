@@ -1,0 +1,6 @@
+subscription ArticleListPage {
+	articles {
+		id
+		...ArticleItem
+	}
+}

@@ -1,0 +1,5 @@
+fragment ArticleItem on article {
+	id
+	title
+	description
+}
