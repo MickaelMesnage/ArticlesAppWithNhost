@@ -1,4 +1,4 @@
-import { Heading, Spinner, VStack } from '@chakra-ui/react';
+import { Flex, Heading, Spinner, VStack } from '@chakra-ui/react';
 import Error from '../../atoms/Error';
 import ArticleItem from '../../molecules/ArticleItem/ArticleItem';
 import ArticleCreationModalForm from '../../organisms/ArticleCreationModalForm/ArticleCreationModalForm';
@@ -18,9 +18,11 @@ const ArticleListPage = () => {
 		<VStack w="full" align="start">
 			<Heading>Liste des articles</Heading>
 			<ArticleCreationModalForm />
-			{data.articles.map((article) => (
-				<ArticleItem key={article.id} fragment={article} />
-			))}
+			<Flex gap={6} wrap="wrap">
+				{data.articles.map((article) => (
+					<ArticleItem key={article.id} fragment={article} />
+				))}
+			</Flex>
 		</VStack>
 	);
 };

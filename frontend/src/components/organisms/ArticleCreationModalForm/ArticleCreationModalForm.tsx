@@ -36,6 +36,9 @@ const ArticleCreationModalForm = () => {
 						},
 					},
 				});
+				setTitle('');
+				setDescription('');
+				onClose();
 				toastSuccess('Article crée avec succès');
 			} catch (error) {
 				toastError("Erreur lors de la création de l'article");
