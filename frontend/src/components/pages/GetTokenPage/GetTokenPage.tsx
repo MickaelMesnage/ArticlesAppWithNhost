@@ -1,4 +1,4 @@
-import { Button, Heading, Input, VStack } from '@chakra-ui/react';
+import { Button, FormLabel, Heading, Input, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
 import { getToken } from '../../../api/functions';
 import useToast from '../../../hooks/useToast';
@@ -24,6 +24,7 @@ const GetTokenPage = () => {
 			<Heading>
 				Récupérer un token à partir d&lsquo;une clef grâce à une cloud function
 			</Heading>
+			<FormLabel>Clef</FormLabel>
 			<Input value={key} onChange={(e) => setKey(e.target.value)} />
 			<Button onClick={onSubmit}>Récupérer le token</Button>
 		</VStack>

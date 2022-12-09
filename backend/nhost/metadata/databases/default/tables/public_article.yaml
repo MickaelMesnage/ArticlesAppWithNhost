@@ -6,6 +6,15 @@ configuration:
   custom_column_names: {}
   custom_root_fields:
     select: articles
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        userId: x-hasura-User-Id
+      columns:
+        - description
+        - title
 select_permissions:
   - role: user
     permission:

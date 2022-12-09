@@ -1,0 +1,5 @@
+mutation ArticleCreation($article: article_insert_input!) {
+	insert_article_one(object: $article) {
+		id
+	}
+}

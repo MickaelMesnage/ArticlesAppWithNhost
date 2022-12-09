@@ -1,4 +1,12 @@
-import { Box, Button, Heading, Input, Text, VStack } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	FormLabel,
+	Heading,
+	Input,
+	Text,
+	VStack,
+} from '@chakra-ui/react';
 import { useSignInEmailPassword } from '@nhost/react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -33,7 +41,9 @@ const SignInPage = () => {
 		<Box w={60}>
 			<VStack align="start">
 				<Heading>Connexion</Heading>
+				<FormLabel>Email</FormLabel>
 				<Input value={email} onChange={(e) => setEmail(e.target.value)} />
+				<FormLabel>Mot de passe</FormLabel>
 				<Input
 					type="password"
 					value={password}
