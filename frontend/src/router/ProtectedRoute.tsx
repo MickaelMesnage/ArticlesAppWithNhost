@@ -6,14 +6,12 @@ import Path from './Path';
 const ProtectedRoute = () => {
 	const { isAuthenticated, isLoading } = useAuthenticationStatus();
 	const location = useLocation();
-	console.log('dede');
 
 	if (isLoading) return <Spinner />;
 
 	if (!isAuthenticated) {
 		return <Navigate to={Path.SignIn} state={{ from: location }} replace />;
 	}
-	console.log('ddddddd');
 
 	return <Outlet />;
 };
