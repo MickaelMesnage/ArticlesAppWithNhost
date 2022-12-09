@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ArticleListPage from '../components/pages/ArticleListPage/ArticleListPage';
+import GetTokenPage from '../components/pages/GetTokenPage/GetTokenPage';
 import SignInPage from '../components/pages/SignInPage';
 import SignUpPage from '../components/pages/SignUpPage';
 import ConnectedLayout from './ConnectedLayout';
@@ -13,6 +14,11 @@ const Router = () => (
 		<Route path={Path.ArticleList} element={<ProtectedRoute />}>
 			<Route path="*" element={<ConnectedLayout />}>
 				<Route path="*" element={<ArticleListPage />} />
+			</Route>
+		</Route>
+		<Route path={Path.GetToken} element={<ProtectedRoute />}>
+			<Route path="*" element={<ConnectedLayout />}>
+				<Route path="*" element={<GetTokenPage />} />
 			</Route>
 		</Route>
 		<Route path="/" element={<Navigate to={Path.ArticleList} />} />

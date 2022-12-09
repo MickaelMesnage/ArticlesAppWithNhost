@@ -6,6 +6,15 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+		"baseUrl": ".",
+		"paths": {
+			"@shared/*": ["../shared/*"],
+			"@utils/*": ["./_utils/*"],
+			"@types/*": ["./_types/*"],
+			"@gql": ["./_gql/index.ts"],
+			"@i18n": ["./_i18n/index.ts"],
+			"@i18n/*": ["./_i18n/*"],
+			"@search/*": ["./_search/*"]
   }
 }

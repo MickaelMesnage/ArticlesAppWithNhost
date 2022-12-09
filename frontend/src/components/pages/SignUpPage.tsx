@@ -6,8 +6,8 @@ import useToast from '../../hooks/useToast';
 import Path from '../../router/Path';
 
 const SignUpPage = () => {
-	const [email, setEmail] = useState<string>();
-	const [password, setPassword] = useState<string>();
+	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
 	const { toastError, toastSuccess } = useToast();
 
 	const { signUpEmailPassword, isLoading } = useSignUpEmailPassword();

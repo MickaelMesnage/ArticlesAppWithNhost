@@ -6,6 +6,7 @@ export enum Path {
 	ChangePassword = '/change-password',
 	EmailVerification = '/email-verification',
 	ArticleList = '/articles',
+	GetToken = 'get-token',
 }
 
 export default Path;

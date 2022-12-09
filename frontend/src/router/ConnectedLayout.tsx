@@ -8,6 +8,10 @@ const LINKS: Array<{ label: string; path: string }> = [
 		label: 'Articles',
 		path: Path.ArticleList,
 	},
+	{
+		label: 'Récupérer un token',
+		path: Path.GetToken,
+	},
 ];
 
 const ConnectedLayout = () => {
@@ -20,14 +24,16 @@ const ConnectedLayout = () => {
 	};
 
 	return (
-		<VStack>
+		<VStack align="start">
 			<HStack justify="space-between" w="full" p={8} borderBottom="solid">
 				<Box>
-					{LINKS.map(({ label, path }) => (
-						<Link key={path} href={path}>
-							{label}
-						</Link>
-					))}
+					<HStack gap={4}>
+						{LINKS.map(({ label, path }) => (
+							<Link key={path} href={path}>
+								{label}
+							</Link>
+						))}
+					</HStack>
 				</Box>
 				<Button onClick={onClick}>Se déconnecter</Button>
 			</HStack>
