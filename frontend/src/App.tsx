@@ -4,11 +4,12 @@ import { NhostApolloProvider } from '@nhost/react-apollo';
 import { BrowserRouter } from 'react-router-dom';
 import nhost from './nhost';
 import Router from './router';
+import theme from './theme/theme';
 
 const App = () => (
 	<NhostReactProvider nhost={nhost}>
 		<NhostApolloProvider nhost={nhost}>
-			<ChakraProvider>
+			<ChakraProvider theme={theme}>
 				<BrowserRouter>
 					<Router />
 				</BrowserRouter>

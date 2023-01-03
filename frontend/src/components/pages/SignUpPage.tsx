@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { useSignUpEmailPassword } from '@nhost/react';
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useToast from '../../hooks/useToast';
 import Path from '../../router/Path';
 
@@ -17,22 +17,33 @@ const SignUpPage = () => {
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const { toastError, toastSuccess } = useToast();
+	const navigate = useNavigate();
 
 	const { signUpEmailPassword, isLoading } = useSignUpEmailPassword();
 
+	const resetFields = () => {
+		setEmail('');
+		setPassword('');
+	};
+
+	const goToHome = () => {
+		navigate(Path.Home);
+	};
+
+	const areEmailAndPasswordValid = (): boolean =>
+		Boolean(email) && Boolean(password);
+
 	const onSubmit = async () => {
-		try {
-			if (email && password) {
-				const { error } = await signUpEmailPassword(email, password);
-				if (!error) {
-					toastSuccess('Inscription réussi');
-					setEmail('');
-					setPassword('');
-					return <Navigate to={Path.Home} />;
-				}
+		if (areEmailAndPasswordValid()) {
+			const { error } = await signUpEmailPassword(email, password);
+
+			if (error) {
+				toastError('Error lors de la inscription');
+			} else {
+				toastSuccess('Inscription réussie');
+				resetFields();
+				goToHome();
 			}
-		} catch (error) {
-			toastError('Error lors de la inscription');
 		}
 	};
 

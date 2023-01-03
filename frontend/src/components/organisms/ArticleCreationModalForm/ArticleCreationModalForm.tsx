@@ -25,22 +25,30 @@ const ArticleCreationModalForm = () => {
 	const { toastSuccess, toastError } = useToast();
 	const [createArticle, { loading }] = useArticleCreationMutation();
 
+	const areTitleAndDescriptionNotEmpty = (): boolean =>
+		Boolean(title) && Boolean(description);
+
+	const resetFields = () => {
+		setTitle('');
+		setDescription('');
+	};
+
 	const onSubmit = async () => {
-		if (title && description) {
-			try {
-				await createArticle({
-					variables: {
-						article: {
-							title,
-							description,
-						},
+		if (areTitleAndDescriptionNotEmpty()) {
+			const { errors } = await createArticle({
+				variables: {
+					article: {
+						title,
+						description,
 					},
-				});
-				setTitle('');
-				setDescription('');
+				},
+			});
+
+			if (!errors) {
+				resetFields();
 				onClose();
-				toastSuccess('Article crée avec succès');
-			} catch (error) {
+				toastSuccess('Article créé avec succès');
+			} else {
 				toastError("Erreur lors de la création de l'article");
 			}
 		}

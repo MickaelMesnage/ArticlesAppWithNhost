@@ -21,19 +21,34 @@ const SignInPage = () => {
 
 	const { signInEmailPassword, isLoading } = useSignInEmailPassword();
 
+	const resetFields = () => {
+		setEmail('');
+		setPassword('');
+	};
+
+	const goToHome = () => {
+		navigate(Path.Home);
+	};
+
+	const areEmailAndPasswordValid = (): boolean =>
+		Boolean(email) && Boolean(password);
+
 	const onSubmit = async () => {
-		try {
-			if (email && password) {
-				const { error } = await signInEmailPassword(email, password);
-				if (!error) {
-					setEmail('');
-					setPassword('');
-					toastSuccess('Connexion réussi');
-					navigate(Path.Home);
-				}
+		if (areEmailAndPasswordValid()) {
+			const { error, needsEmailVerification } = await signInEmailPassword(
+				email,
+				password,
+			);
+
+			if (needsEmailVerification) {
+				toastError("Votre email n'a pas été vérifiéé !");
+			} else if (error) {
+				toastError('Error lors de la connexion');
+			} else {
+				toastSuccess('Connexion réussi');
+				resetFields();
+				goToHome();
 			}
-		} catch (error) {
-			toastError('Error lors de la connexion');
 		}
 	};
 

@@ -1,4 +1,4 @@
-import { BellIcon } from '@chakra-ui/icons';
+import { StarIcon } from '@chakra-ui/icons';
 import {
 	Card,
 	CardBody,
@@ -28,16 +28,16 @@ const ArticleItem = ({ fragment }: ArticleItemProps) => {
 
 	const onClick = async () => {
 		// Optimistic handle with a useState
-		try {
-			setNbFollowers((oldValue) => oldValue + 1);
-			await followArticle({
-				variables: {
-					article_follower: {
-						articleId: fragment.id,
-					},
+		setNbFollowers((oldValue) => oldValue + 1);
+		const { errors } = await followArticle({
+			variables: {
+				article_follower: {
+					articleId: fragment.id,
 				},
-			});
-		} catch (error) {
+			},
+		});
+
+		if (errors?.length) {
 			setNbFollowers(fragment.article_followers.length);
 		}
 	};
@@ -52,12 +52,8 @@ const ArticleItem = ({ fragment }: ArticleItemProps) => {
 			</CardBody>
 			<CardFooter display="flex" justify="end">
 				<HStack>
-					<IconButton
-						aria-label="sonnette"
-						onClick={onClick}
-						disabled={loading}
-					>
-						<BellIcon />
+					<IconButton aria-label="star" onClick={onClick} disabled={loading}>
+						<StarIcon />
 					</IconButton>
 					<Text>{nbFollowers}</Text>
 				</HStack>

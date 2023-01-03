@@ -37,7 +37,9 @@ const ConnectedLayout = () => {
 				</Box>
 				<Button onClick={onClick}>Se déconnecter</Button>
 			</HStack>
-			<Outlet />
+			<Box p={8}>
+				<Outlet />
+			</Box>
 		</VStack>
 	);
 };

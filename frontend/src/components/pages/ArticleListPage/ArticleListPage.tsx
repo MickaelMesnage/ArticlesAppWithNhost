@@ -9,10 +9,7 @@ const ArticleListPage = () => {
 
 	if (loading) return <Spinner />;
 
-	if (error || !data?.articles) {
-		console.log({ error });
-		return <Error />;
-	}
+	if (error || !data?.articles) return <Error />;
 
 	return (
 		<VStack w="full" align="start">
