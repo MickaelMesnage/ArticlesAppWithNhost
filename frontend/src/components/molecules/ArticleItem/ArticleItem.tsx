@@ -27,17 +27,18 @@ const ArticleItem = ({ fragment }: ArticleItemProps) => {
 	}, [setNbFollowers, fragment.article_followers.length]);
 
 	const onClick = async () => {
-		// Optimistic handle with a useState
-		setNbFollowers((oldValue) => oldValue + 1);
-		const { errors } = await followArticle({
-			variables: {
-				article_follower: {
-					articleId: fragment.id,
+		try {
+			// Optimistic handle with a useState
+			setNbFollowers((oldValue) => oldValue + 1);
+			const { errors } = await followArticle({
+				variables: {
+					article_follower: {
+						articleId: fragment.id,
+					},
 				},
-			},
-		});
-
-		if (errors?.length) {
+			});
+			if (errors?.length) throw new Error(errors[0]);
+		} catch (error) {
 			setNbFollowers(fragment.article_followers.length);
 		}
 	};
