@@ -10,8 +10,8 @@ const GetTokenPage = () => {
 	const onSubmit = async () => {
 		if (key) {
 			try {
-				await getToken({ key });
-				toastSuccess('Token récupéré avec succès');
+				const { token } = await getToken({ key });
+				toastSuccess(`Token récupéré avec succès: ${token}`);
 			} catch (error) {
 				toastError('Erreur lors de la récupération du token');
 			}

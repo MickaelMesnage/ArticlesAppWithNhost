@@ -37,7 +37,7 @@ const ArticleItem = ({ fragment }: ArticleItemProps) => {
 					},
 				},
 			});
-			if (errors?.length) throw new Error(errors[0]);
+			if (errors?.length) throw new Error();
 		} catch (error) {
 			setNbFollowers(fragment.article_followers.length);
 		}

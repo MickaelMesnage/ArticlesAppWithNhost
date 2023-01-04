@@ -1,8 +1,14 @@
 import nhost from '../nhost';
 
-export const getToken = fn<{
+type GetTokenParams = {
 	key: string;
-}>('getToken');
+};
+
+type GetTokenResult = {
+	token: string;
+};
+
+export const getToken = fn<GetTokenParams, GetTokenResult>('getToken');
 
 // Helper to call a function
 function fn<Params, Result = void>(route: string) {
