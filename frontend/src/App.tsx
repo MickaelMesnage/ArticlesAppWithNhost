@@ -7,8 +7,10 @@ import Router from './router';
 import theme from './theme/theme';
 
 const App = () => (
+	// TODO deprecated
 	<NhostReactProvider nhost={nhost}>
-		<NhostApolloProvider nhost={nhost}>
+		{/* TODO Why any */}
+		<NhostApolloProvider nhost={nhost as any}>
 			<ChakraProvider theme={theme}>
 				<BrowserRouter>
 					<Router />

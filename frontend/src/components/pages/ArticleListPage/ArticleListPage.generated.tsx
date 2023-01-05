@@ -7,7 +7,7 @@ const defaultOptions = {} as const;
 export type ArticleListPageSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type ArticleListPageSubscription = { __typename?: 'subscription_root', articles: Array<{ __typename?: 'article', id: any, title: string, description: string, article_followers: Array<{ __typename?: 'article_follower', id: any }> }> };
+export type ArticleListPageSubscription = { __typename?: 'subscription_root', articles: Array<{ __typename?: 'article', id: any, title: string, description: string, article_followers: Array<{ __typename?: 'article_follower', id: any }>, user: { __typename?: 'users', id: any } }> };
 
 
 export const ArticleListPageDocument = gql`

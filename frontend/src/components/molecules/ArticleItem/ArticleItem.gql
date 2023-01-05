@@ -5,10 +5,19 @@ fragment ArticleItem on article {
 	article_followers {
 		id
 	}
+	user {
+		id
+	}
 }
 
 mutation FollowArticle($article_follower: article_follower_insert_input!) {
 	insert_article_follower_one(object: $article_follower) {
+		id
+	}
+}
+
+mutation DeleteArticle($id: uuid!) {
+	delete_article_by_pk(id: $id) {
 		id
 	}
 }

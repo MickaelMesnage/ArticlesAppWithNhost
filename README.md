@@ -1,4 +1,4 @@
-# nhost_presentation
+# Articles app with nhost
 
 Aim of this project: explain the tool nhost.
 
@@ -21,6 +21,10 @@ On frontend, reactjs with typescript, chakra, react_router_dom, appolo client fo
 - Docker
 - nodejs
 - Git
+
+## The project
+
+After signin/signup, user can add articles on the platform. The user can add like to favorite article.
 
 ## Installation of the project
 
