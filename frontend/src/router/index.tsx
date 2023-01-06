@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ArticleListPage from '../components/pages/ArticleListPage/ArticleListPage';
 import GetTokenPage from '../components/pages/GetTokenPage/GetTokenPage';
+import ImageListPage from '../components/pages/ImageListPage/ImageListPage';
 import SignInPage from '../components/pages/SignInPage';
 import SignUpPage from '../components/pages/SignUpPage';
 import AuthLayout from './AuthLayout';
@@ -19,6 +20,11 @@ const Router = () => (
 		<Route path={Path.ArticleList} element={<ProtectedRoute />}>
 			<Route path="*" element={<ConnectedLayout />}>
 				<Route index element={<ArticleListPage />} />
+			</Route>
+		</Route>
+		<Route path={Path.ImageList} element={<ProtectedRoute />}>
+			<Route path="*" element={<ConnectedLayout />}>
+				<Route index element={<ImageListPage />} />
 			</Route>
 		</Route>
 		<Route path={Path.GetToken} element={<ProtectedRoute />}>

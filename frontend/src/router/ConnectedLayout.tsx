@@ -9,6 +9,10 @@ const LINKS: Array<{ label: string; path: string }> = [
 		path: Path.ArticleList,
 	},
 	{
+		label: 'Images',
+		path: Path.ImageList,
+	},
+	{
 		label: 'Récupérer un token',
 		path: Path.GetToken,
 	},

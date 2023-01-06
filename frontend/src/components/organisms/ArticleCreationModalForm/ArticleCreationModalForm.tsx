@@ -10,9 +10,9 @@ import {
 	useDisclosure,
 } from '@chakra-ui/react';
 import useToast from '../../../hooks/useToast';
-import ArticleModalForm, {
-	ArticleModalFormSubmitProps,
-} from '../ArticleModalForm/ArticleModalForm';
+import ArticleForm, {
+	ArticleFormSubmitProps,
+} from '../ArticleModalForm/ArticleForm';
 import { useArticleCreationMutation } from './ArticleCreationModalForm.generated';
 
 const ArticleCreationModalForm = () => {
@@ -20,10 +20,7 @@ const ArticleCreationModalForm = () => {
 	const { toastSuccess, toastError } = useToast();
 	const [createArticle, { loading }] = useArticleCreationMutation();
 
-	const onSubmit = async ({
-		title,
-		description,
-	}: ArticleModalFormSubmitProps) => {
+	const onSubmit = async ({ title, description }: ArticleFormSubmitProps) => {
 		const { errors } = await createArticle({
 			variables: {
 				article: {
@@ -53,7 +50,7 @@ const ArticleCreationModalForm = () => {
 					</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
-						<ArticleModalForm
+						<ArticleForm
 							onSubmit={onSubmit}
 							validButtonLabel="Créer"
 							isValidButtonDisabled={loading}

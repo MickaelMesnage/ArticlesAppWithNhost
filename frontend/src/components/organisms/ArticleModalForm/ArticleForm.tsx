@@ -1,24 +1,24 @@
 import { Button, FormLabel, Input, Textarea, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
 
-export type ArticleModalFormSubmitProps = {
+export type ArticleFormSubmitProps = {
 	title: string;
 	description: string;
 };
 
-interface ArticleModalFormProps {
-	onSubmit: (data: ArticleModalFormSubmitProps) => Promise<void>;
+interface ArticleFormProps {
+	onSubmit: (data: ArticleFormSubmitProps) => Promise<void>;
 	isValidButtonDisabled: boolean;
 	validButtonLabel: string;
-	defaultValues?: ArticleModalFormSubmitProps;
+	defaultValues?: ArticleFormSubmitProps;
 }
 
-const ArticleModalForm = ({
+const ArticleForm = ({
 	onSubmit,
 	validButtonLabel,
 	isValidButtonDisabled,
 	defaultValues,
-}: ArticleModalFormProps) => {
+}: ArticleFormProps) => {
 	const [title, setTitle] = useState<string>(defaultValues?.title || '');
 	const [description, setDescription] = useState<string>(
 		defaultValues?.description || '',
@@ -55,4 +55,4 @@ const ArticleModalForm = ({
 	);
 };
 
-export default ArticleModalForm;
+export default ArticleForm;

@@ -1,12 +1,12 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "strictNullChecks": false,
+	"compilerOptions": {
+		"allowJs": true,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"strictNullChecks": false,
 		"baseUrl": ".",
 		"paths": {
 			"@shared/*": ["../shared/*"],
@@ -16,5 +16,6 @@
 			"@i18n": ["./_i18n/index.ts"],
 			"@i18n/*": ["./_i18n/*"],
 			"@search/*": ["./_search/*"]
-  }
+		}
+	}
 }
