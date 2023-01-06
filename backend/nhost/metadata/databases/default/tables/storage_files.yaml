@@ -53,6 +53,8 @@ insert_permissions:
   - role: user
     permission:
       check: {}
+      set:
+        uploaded_by_user_id: x-hasura-User-Id
       columns:
         - bucket_id
         - etag
@@ -81,4 +83,6 @@ select_permissions:
     permission:
       columns:
         - id
-      filter: {}
+      filter:
+        uploaded_by_user_id:
+          _eq: X-Hasura-User-Id

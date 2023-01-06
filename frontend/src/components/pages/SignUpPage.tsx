@@ -38,7 +38,7 @@ const SignUpPage = () => {
 			const { error } = await signUpEmailPassword(email, password);
 
 			if (error) {
-				toastError('Error lors de la inscription');
+				toastError("Error lors de l'inscription");
 			} else {
 				toastSuccess('Inscription réussie');
 				resetFields();

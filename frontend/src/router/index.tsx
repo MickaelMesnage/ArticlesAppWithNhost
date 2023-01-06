@@ -6,16 +6,21 @@ import SignInPage from '../components/pages/SignInPage';
 import SignUpPage from '../components/pages/SignUpPage';
 import AuthLayout from './AuthLayout';
 import ConnectedLayout from './ConnectedLayout';
+import NotConnectedRoute from './NotConnectedRoute';
 import Path from './Path';
 import ProtectedRoute from './ProtectedRoute';
 
 const Router = () => (
 	<Routes>
-		<Route path={Path.SignIn} element={<AuthLayout />}>
-			<Route index element={<SignInPage />} />
+		<Route path={Path.SignIn} element={<NotConnectedRoute />}>
+			<Route path="*" element={<AuthLayout />}>
+				<Route index element={<SignInPage />} />
+			</Route>
 		</Route>
-		<Route path={Path.SignUp} element={<AuthLayout />}>
-			<Route index element={<SignUpPage />} />
+		<Route path={Path.SignUp} element={<NotConnectedRoute />}>
+			<Route path="*" element={<AuthLayout />}>
+				<Route index element={<SignUpPage />} />
+			</Route>
 		</Route>
 		<Route path={Path.ArticleList} element={<ProtectedRoute />}>
 			<Route path="*" element={<ConnectedLayout />}>
